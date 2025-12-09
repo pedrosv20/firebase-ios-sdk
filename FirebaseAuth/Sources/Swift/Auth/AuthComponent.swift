@@ -47,17 +47,15 @@ class AuthComponent: NSObject, Library, AuthProvider, ComponentLifecycleMaintain
   // MARK: - Library conformance
 
   static func componentsToRegister() -> [Component] {
-    let appCheckInterop = Dependency(with: AppCheckInterop.self, isRequired: false)
-    return [Component(AuthProvider.self,
-                      instantiationTiming: .alwaysEager,
-                      dependencies: [appCheckInterop]) { container, isCacheable in
-        guard let app = container.app else { return nil }
-        isCacheable.pointee = true
-        let newComponent = AuthComponent(app: app)
-        // Set up instances early enough so User on keychain will be decoded.
-        newComponent.auth()
-        return newComponent
-      }]
+    let authCreationBlock: ComponentCreationBlock = { container, isCacheable in
+      guard let app = container.app else { return nil }
+      isCacheable.pointee = true
+      return Auth(app: app)
+    }
+    let authInterop = Component(AuthInterop.self,
+                                instantiationTiming: .alwaysEager,
+                                creationBlock: authCreationBlock)
+    return [authInterop]
   }
 
   // MARK: - AuthProvider conformance
@@ -71,7 +69,7 @@ class AuthComponent: NSObject, Library, AuthProvider, ComponentLifecycleMaintain
     if let instance = instances[app.name] {
       return instance
     }
-    let newInstance = FirebaseAuth.Auth(app: app)
+    let newInstance = Auth(app: app)
     instances[app.name] = newInstance
     return newInstance
   }
