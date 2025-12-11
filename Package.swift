@@ -61,9 +61,17 @@ let package = Package(
       name: "FirebaseAuth",
       targets: ["FirebaseAuth"]
     ),
-    .library(
+     .library(
       name: "FirebaseAppCheck",
       targets: ["FirebaseAppCheck"]
+    ),
+    .library(
+      name: "FirebaseAppCheckInterop",
+      targets: ["FirebaseAppCheckInterop"]
+    ),
+    .library(
+      name: "FirebaseCoreExtension",
+      targets: ["FirebaseCoreExtension"]
     ),
     .library(
       name: "FirebaseAppDistribution-Beta",
