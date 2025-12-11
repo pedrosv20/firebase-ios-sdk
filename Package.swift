@@ -58,6 +58,10 @@ let package = Package(
       targets: ["FirebaseAnalyticsIdentitySupportTarget"]
     ),
     .library(
+      name: "FirebaseAuthInternal",
+      targets: ["FirebaseAuthInternal"]
+    ),
+    .library(
       name: "FirebaseAuth",
       targets: ["FirebaseAuth"]
     ),
