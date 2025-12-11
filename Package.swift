@@ -89,6 +89,10 @@ let package = Package(
       name: "FirebaseCrashlytics",
       targets: ["FirebaseCrashlytics"]
     ),
+     .library(
+      name: "FirebaseAuthInterop",
+      targets: ["FirebaseAuthInterop"]
+    ),
     .library(
       name: "FirebaseDatabase",
       targets: ["FirebaseDatabase"]
