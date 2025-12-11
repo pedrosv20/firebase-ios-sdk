@@ -61,7 +61,7 @@ let package = Package(
       name: "FirebaseAuth",
       targets: ["FirebaseAuth"]
     ),
-     .library(
+    .library(
       name: "FirebaseAppCheck",
       targets: ["FirebaseAppCheck"]
     ),
