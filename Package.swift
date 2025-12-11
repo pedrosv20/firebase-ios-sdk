@@ -66,14 +66,6 @@ let package = Package(
       targets: ["FirebaseAppCheck"]
     ),
     .library(
-      name: "FirebaseAppCheckInterop",
-      targets: ["FirebaseAppCheckInterop"]
-    ),
-    .library(
-      name: "FirebaseCoreExtension",
-      targets: ["FirebaseCoreExtension"]
-    ),
-    .library(
       name: "FirebaseAppDistribution-Beta",
       targets: ["FirebaseAppDistributionTarget"]
     ),
@@ -488,9 +480,7 @@ let package = Package(
         .product(name: "GTMSessionFetcherCore", package: "gtm-session-fetcher"),
       ],
       path: "FirebaseAuth/Sources",
-      exclude: [
-        "ObjC", "Public",
-      ],
+      publicHeadersPath: "Public",
       resources: [.process("Resources/PrivacyInfo.xcprivacy")],
       swiftSettings: [
         .swiftLanguageMode(SwiftLanguageMode.v5),
@@ -506,9 +496,6 @@ let package = Package(
         .product(name: "RecaptchaInterop", package: "interop-ios-for-google-sdks"),
       ],
       path: "FirebaseAuth/Sources",
-      exclude: [
-        "Swift", "Resources",
-      ],
       publicHeadersPath: "Public",
       cSettings: [
         .headerSearchPath("../../"),
